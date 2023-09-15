@@ -1,9 +1,13 @@
+import BookList from "../components/BookList";
+import HeroSection from "../components/HeroSection";
 
 function Home() {
-  
- return (
-  <div className='text-purple-900'> Home Page </div>
- )
+  return (
+    <>
+      <HeroSection />
+      <BookList />
+    </>
+  );
 }
 
-export default Home
+export default Home;

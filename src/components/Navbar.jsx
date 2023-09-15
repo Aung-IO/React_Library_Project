@@ -1,10 +1,10 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
     <div>
-    <nav className="border border-b-1">
+      <nav className="border border-b-1">
         <ul className="flex justify-between items-center p-3 max-w-6xl mx-auto">
           <li className="flex items-center gap-2">
             <svg
@@ -28,7 +28,10 @@ export default function Navbar() {
               className="outline-none hidden md:block bg-slate-100 rounded-md p-1"
             />
           </li>
-          <Link to="/home" className="flex items-center gap-2 md:-ml-32 cursor-pointer">
+          <Link
+            to="/home"
+            className="flex items-center gap-2 md:-ml-32 cursor-pointer"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -50,7 +53,10 @@ export default function Navbar() {
           </Link>
           <li className="flex gap-3 items-center">
             {/* create book btn */}
-            <Link to="/create" className="text-white bg-primary px-3 py-2 rounded-2xl flex gap-1 items-center">
+            <Link
+              to="/create"
+              className="text-white bg-primary px-3 py-2 rounded-2xl flex gap-1 items-center"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -77,7 +83,6 @@ export default function Navbar() {
           </li>
         </ul>
       </nav>
-  
-  </div>
-  )
+    </div>
+  );
 }
