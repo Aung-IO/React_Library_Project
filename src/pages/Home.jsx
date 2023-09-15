@@ -2,7 +2,7 @@
 function Home() {
   
  return (
-  <div className='text-purple-900 text-center'> Home Page </div>
+  <div className='text-purple-900'> Home Page </div>
  )
 }
 
