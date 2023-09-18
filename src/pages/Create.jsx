@@ -3,66 +3,76 @@ import React, { useState } from "react";
 export default function Create() {
   let [title, setTitle] = useState("");
   let [description, setDescription] = useState("");
-  let [NewCategory, setNewCategory] = useState("");
+  let [newCategory, setNewCategory] = useState("");
+  let [categories, setCategories] = useState(["html", "JavaScript"]);
+
+  let addCategory = (e) => {
+    setCategories( prev => [newCategory,...prev])
+    setNewCategory('')
+  }
   return (
-    <form class="w-full max-w-lg mx-auto mt-5">
-      <div class="flex flex-wrap -mx-3 mb-6">
-        <div class="w-full px-3">
+    <form className="w-full max-w-lg mx-auto mt-5">
+      <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="w-full px-3">
           <label
-            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-password"
+            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            htmlFor="grid-password"
           >
-            Book Title 
+            Book Title
           </label>
           <input
-          value={title}
-          onChange={e => setTitle(e.target.value)}
-            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="grid-password"
             type="text"
             placeholder="Book Title"
           />
         </div>
       </div>
-      <div class="flex flex-wrap -mx-3 mb-6">
-        <div class="w-full px-3">
+      <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="w-full px-3">
           <label
-            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-password"
+            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            htmlFor="grid-password"
           >
-            Book Description 
+            Book Description
           </label>
           <textarea
             value={description}
-            onChange={e => setDescription(e.target.value)}
-            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            onChange={(e) => setDescription(e.target.value)}
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="grid-password"
             type="textarea"
             placeholder="Book Description"
           />
-          <p class="text-gray-600 text-xs italic">
+          <p className="text-gray-600 text-xs italic">
             Make it as long and as crazy as you'd like
           </p>
         </div>
       </div>
-      <div class="flex flex-wrap -mx-3 mb-6">
-        <div class="w-full px-3">
+      <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="w-full px-3">
           <label
-            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-password"
+            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            htmlFor="grid-password"
           >
-            Book Categories 
+            Book Categories
           </label>
           <div className="flex items-center space-x-2">
             <input
-              value={NewCategory}
+              value={newCategory}
               onChange={(e) => setNewCategory(e.target.value)}
-              class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-password"
               type="textarea"
               placeholder="Book Category"
             />
-            <button className="bg-primary p-1 rounded-md mb-3 w-11 h-11">
+            <button
+              className="bg-primary p-1 rounded-md mb-3 w-11 h-11"
+              onClick={addCategory}
+              type="button"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -79,14 +89,21 @@ export default function Create() {
               </svg>
             </button>
           </div>
-          <p class="text-gray-600 text-xs italic">
-            Make it as long and as crazy as you'd like
-          </p>
+          <div className="flex flex-wrap">
+            {categories.map((category) => (
+              <span
+                key={category}
+                className="mx-1 my-1 text-white rounded-full px-2 py-1 text-sm bg-primary"
+              >
+                {category}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
       <button className="text-white bg-primary px-3 py-2 rounded-2xl flex gap-1 items-center w-full justify-center">
-        <span className="hidden md:block">Create Book</span>
+        <span>Create Book</span>
       </button>
     </form>
   );
