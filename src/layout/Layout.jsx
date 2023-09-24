@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import Navbar from "../components/Navbar";
-import './Layout.css';
+import useTheme from "../hooks/useTheme";
+import "./Layout.css";
 
 export default function Layout() {
+  let { isDark } = useTheme();
+  useEffect(() => {
+    let body = document.body;
+    if (isDark) {
+      body.classList.add("bg-dbg");
+    } else {
+      body.classList.remove("bg-dbg");
+    }
+  }, [isDark]);
+
   const location = useLocation();
   return (
-    <div>
+    <div className={isDark ? "bg-dbg" : "bg-white"}>
       <Navbar />
       {/* dynamic router changes content */}
 

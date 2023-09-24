@@ -2,8 +2,10 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import bookImg from "../assets/cover.jpg";
 import useFetch from "../hooks/useFetch";
+import useTheme from "../hooks/useTheme";
 
 export default function BookDetail() {
+  let {isDark} = useTheme();
   let { id } = useParams();
   let {
     data: book,
@@ -17,12 +19,12 @@ export default function BookDetail() {
       {loading && <p>Loading...</p>}
 
       {book && (
-        <div className="grid grid-cols-2 mt-3">
+        <div className="grid grid-cols-2 mt-3 h-screen">
           <div>
             <img src={bookImg} alt="" className="w-[70%]" />
           </div>
 
-        <div className="space-y-4">
+        <div className={`space-y-4 ${isDark ? 'text-white' : ''}`}>
           <h1 className="text-3xl font-bold">{book.title}</h1>
           <div className="space-x-3">
             {book.categories.map( category => (

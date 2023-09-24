@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import useTheme from "../hooks/useTheme";
+
 
 export default function Create() {
   let [title, setTitle] = useState("");
   let [description, setDescription] = useState("");
   let [newCategory, setNewCategory] = useState("");
   let [categories, setCategories] = useState([]);
+  let {isDark} = useTheme();
 
   let { setPostData, data: book } = useFetch(
     "http://localhost:3000/books",
@@ -43,11 +46,12 @@ export default function Create() {
   }, [book]);
 
   return (
-    <form className="w-full max-w-lg mx-auto mt-5" onSubmit={addBook}>
+  <div className="h-screen">
+      <form className="w-full max-w-lg mx-auto mt-5" onSubmit={addBook}>
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full px-3">
           <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              className={`block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 ${isDark ? 'text-white' : ''}`}
             htmlFor="grid-password"
           >
             Book Title
@@ -65,7 +69,7 @@ export default function Create() {
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full px-3">
           <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            className={`block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 ${isDark ? 'text-white' : ''}`}
             htmlFor="grid-password"
           >
             Book Description
@@ -78,7 +82,7 @@ export default function Create() {
             type="textarea"
             placeholder="Book Description"
           />
-          <p className="text-gray-600 text-xs italic">
+          <p className={`text-gray-600 text-xs italic ${isDark ? 'text-white' : ''}`}>
             Make it as long and as crazy as you'd like
           </p>
         </div>
@@ -86,7 +90,7 @@ export default function Create() {
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full px-3">
           <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              className={`block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 ${isDark ? 'text-white' : ''}`}
             htmlFor="grid-password"
           >
             Book Categories
@@ -138,5 +142,6 @@ export default function Create() {
         <span>Create Book</span>
       </button>
     </form>
+  </div>
   );
 }

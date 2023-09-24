@@ -2,11 +2,13 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import cover from "../assets/cover.jpg";
 import useFetch from "../hooks/useFetch";
+import useTheme from "../hooks/useTheme";
 
 export default function BookList() {
   let location = useLocation();
   let params = new URLSearchParams(location.search);
   let search = params.get("search");
+  let {isDark} = useTheme();
 
   let {
     data: books,
@@ -27,7 +29,7 @@ export default function BookList() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {books.map((book) => (
             <Link to={`/books/${book.id}`} key={book.id}>
-              <dir className="p-4 border border-1">
+              <dir className={`p-4 border border-1 min-h-[470px] ${isDark ? 'bg-dcard border-primary text-white' : ''}`}>
                 <img src={cover} alt="" />
                 <div className="text-center mt-2 space-y-2">
                   <h1>{book.title}</h1>

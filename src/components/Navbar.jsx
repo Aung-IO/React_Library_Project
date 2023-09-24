@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import darkIcon from "../assets/dark_mode.svg";
+import ligthIcon from "../assets/light_mode.svg";
+import useTheme from "../hooks/useTheme";
 
 export default function Navbar() {
   let [search, setSearch] = useState("");
@@ -13,9 +16,12 @@ export default function Navbar() {
   }
  }
 
+ let {isDark, changeTheme} = useTheme();
+
+
   return (
     <div>
-      <nav className="border border-b-1">
+      <nav className={`border border-b-1 ${isDark ? 'bg-dbg' : 'bg-white'}`}>
         <ul className="flex justify-between items-center p-3 max-w-6xl mx-auto">
           <li className="flex items-center gap-2">
             <input
@@ -94,6 +100,10 @@ export default function Navbar() {
                 src="https://d27v83ov1up738.cloudfront.net/user-profiles/zZR327gfuRcilZzkHjPyRIam50MpjeUoyVnGpy4W.jpg"
                 className="w-full rounded-full"
               />
+            </div>
+            <div className="cursor-pointer">
+            {isDark && <img src={ligthIcon} alt="" className="w-8" onClick={() => changeTheme('light')} />}
+            {!isDark && <img src={darkIcon} alt=""  className="w-8" onClick={() => changeTheme('dark')}/>}
             </div>
           </li>
         </ul>
