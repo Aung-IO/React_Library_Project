@@ -6,6 +6,7 @@ import useTheme from "../hooks/useTheme";
 import "./Layout.css";
 
 export default function Layout() {
+  const location = useLocation();
   let { isDark } = useTheme();
   useEffect(() => {
     let body = document.body;
@@ -16,7 +17,6 @@ export default function Layout() {
     }
   }, [isDark]);
 
-  const location = useLocation();
   return (
     <div className={isDark ? "bg-dbg" : "bg-white"}>
       <Navbar />
@@ -24,7 +24,7 @@ export default function Layout() {
 
       <SwitchTransition>
         <CSSTransition timeout={200} classNames="fade" key={location.pathname}>
-          <div className="max-w-6xl mx-auto p-4">
+          <div className="max-w-6xl mx-auto p-3">
             <Outlet />
           </div>
         </CSSTransition>
