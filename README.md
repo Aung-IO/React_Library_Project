@@ -10,7 +10,5 @@ Currently, two official plugins are available:
 Install the following before the project start
 
 - npm install
-- npm install -g json-server
-
-- npm run dev (for json-server)
+- This projet is based on firebase, so, I removed json-server config
 - npm start (to run project)
